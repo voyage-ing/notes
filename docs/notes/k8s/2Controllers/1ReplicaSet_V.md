@@ -62,6 +62,20 @@ kubectl delete rc -n controller-test kubia --cascade=false
 
 ## ReplicaSet标签选择器
 
+和Deployment，DaemonSet等一样，仅支持下面两种来接收label，无法使用这种：
+
+```yaml
+spec:                              # 无法使用这种方式
+  selector:		
+    label1: xxx1
+  template:
+    metadata:
+      labels:
+        label1: xxx1
+```
+
+
+
 ```bash
 kubectl explain rs.spec.selector.matchLabels
 kubectl explain rs.spec.selector.matchExpressions

@@ -10,26 +10,45 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/dark.css" title="dark" disabled>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/buble.css" title="buble" disabled>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/pure.css" title="pure" >
+
+  <!-- 支持mermaid -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
+  <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  
 </head>
 <body>
   <div id="app"></div>
   <script>
+    mermaid.initialize({ startOnLoad: false });
+
     window.$docsify = {
       name: '<h3>Voyage\'s notes</h3>',
       repo: '',
       coverpage: true,
       loadSidebar: true,
-      subMaxLevel: 2,
+      subMaxLevel: 3,
       executeScript: true,
       themeColor: '#228B22',
 
       search: {
         placeholder: 'Type to search',
         noData: 'No Results!',
-        depth: 2
+        depth: 3
       },
-
-
+      
+      // 支持mermaid
+      markdown: {
+        renderer: {
+          code: function(code, lang) {
+            if (lang === "mermaid") {
+              return (
+                '<div class="mermaid">' + mermaid.render(lang, code) + "</div>"
+              );
+            }
+            return this.origin.code.apply(this, arguments);
+          }
+        }
+     },
 
     }
   </script>
