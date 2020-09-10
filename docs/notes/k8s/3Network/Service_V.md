@@ -21,6 +21,8 @@
    3. targetPort：也就是containerPort
 5. 如果一个Pod中有多个容器，他们共用同一个PodIP，他们直接访问是通过不同的端口来实现的。而service中指定的port是和targetPort也就是containerPort映射的。可以发现其实并没有pod port这个概念。
 
+> 需要注意ClusterIP，或者说ServiceIP其实是VIP，也就是虚拟ip，无法ping通；它只是一个逻辑规则，而不是真实的某个对象（节点主机，容器，虚机）的真实配置的ip地址。
+
 ## kubectl expose
 
 通过kubectl expose 创建service，通过 kubectl expose -h 查询详细具体内容;
@@ -143,6 +145,19 @@ spec:
     targetPort: httpsname2
   selector:
     app: kubia
+```
+
+### Service发现未就绪的Pod
+
+这个随着版本变迁有一些变化，可能已经无法适用于当前版本，仅记录如果有这个需求可以再详细深入。
+
+使用DNS查找机制来查找那些未准备好的pod，要告诉Kubemetes无论pod的准备状态如何， 希望将所有pod添加到服务中。
+
+```yaml
+kind: Service 
+metadata: 
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
 ```
 
 ## 集群内部域名
