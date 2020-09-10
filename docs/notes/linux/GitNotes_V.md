@@ -1,6 +1,4 @@
-# Git Notes
-
-[TOC]
+# Git进阶使用教程
 
 ## Git初始化本地项目并推送到Git服务器
 
