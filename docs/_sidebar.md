@@ -19,6 +19,7 @@
 
 * Deploy Tools
   * [Helm : K8s资源部署利器](./notes/k8s/8Deploytools/helm.md)
+  * [Kustomize](./notes/k8s/8Deploytools/kustomize.md)
 
 * APP Demos
   * [A Pure Pod](./notes/k8s/9Apps/podDemo.md)
