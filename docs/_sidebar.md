@@ -17,6 +17,9 @@
   * [Service : 服务发现](./notes/k8s/3Network/Service_V.md)
   * [Ingress : 域名访问](./notes/k8s/3Network/Ingress.md)
 
+* Deploy Tools
+  * [Helm : K8s资源部署利器](./notes/k8s/8Deploytools/helm.md)
+
 * APP Demos
   * [A Pure Pod](./notes/k8s/9Apps/podDemo.md)
   * [Nginx服务](./notes/k8s/9Apps/nginx_V.md)
