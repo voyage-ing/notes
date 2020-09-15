@@ -61,7 +61,6 @@ spec:
         backend:
           serviceName: app1-foo
           servicePort: 80
-      paths:
       - path: /bar
         backend:
           serviceName: app1-bar
