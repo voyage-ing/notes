@@ -17,6 +17,9 @@
   * [Service : 服务发现](./notes/k8s/3Network/Service_V.md)
   * [Ingress : 域名访问](./notes/k8s/3Network/Ingress.md)
 
+* Storage
+  * [Volumes : 挂载到容器中](./notes/k8s/5Storage/Volumes.md)
+
 * Deploy Tools
   * [Helm : K8s资源部署利器](./notes/k8s/8Deploytools/helm.md)
   * [Kustomize](./notes/k8s/8Deploytools/kustomize.md)

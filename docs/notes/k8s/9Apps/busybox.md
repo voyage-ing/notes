@@ -14,9 +14,16 @@ spec:
       labels:
         app: busybox
     spec:
+      volumes:
+      - name: volume-test
+        emptyDir: {}
       containers:
       - name: app
         image: hub-mirror.c.163.com/library/busybox
+        volumeMounts:
+        - name: volume-test
+          mountPath: /datatest
+          readOnly: true
         args:
         - /bin/sh
         - -c
