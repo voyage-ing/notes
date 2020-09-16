@@ -1,38 +1,37 @@
-# StorageClass
+# StorageClass：动态PV提供
 
-[TOC]
+## StorageClass参数
 
-https://kubernetes.io/zh/docs/concepts/storage/storage-classes/
+大规模集群中可能会有很多PV，如果这些PV都需要手动来创建这是一件很繁琐的事情；所以就有了动态供给概念，也就是Dynamic Provisioning；而之前手动创建的PV都是静态供给方式；而动态供给的关键就是StorageClass，它的作用就是创建PV模版。
 
-
-
-
-
-当然在部署`nfs-client`之前，我们需要先成功安装上 nfs 服务器
-
-： https://blog.csdn.net/dengyadeng/article/details/79549632
-
-
-
-Provisioner 相当于 nfc-client 这一类似的东西
-
-https://github.com/kubernetes-incubator/external-storage/tree/master/nfs-client
-
-
-
-
-
-[root@k8s-master1 nfs]# cat class.yaml
-apiVersion: storage.k8s.io/v1
+```yaml
 kind: StorageClass
+apiVersion: storage.k8s.io/v1
 metadata:
-  name: managed-nfs-storage
-provisioner: fuseim.pri/ifs # or choose another name, must match deployment's env PROVISIONER_NAME'
+  name: standard
+# 指定存储类的供应者
+provisioner: kubernetes.io/aws-ebs
 parameters:
-  archiveOnDelete: "false"
-archiveOnDelete: "false"   
-这个参数可以设置为false和true.
-archiveOnDelete字面意思为删除时是否存档,false表示不存档,即删除数据,true表示存档,即重命名路径.
-————————————————
-版权声明：本文为CSDN博主「王树民」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/wangshuminjava/article/details/105973318
+  type: gp2
+# 指定回收策略
+reclaimPolicy: Retain
+```
+
+- `provisioner`：https://www.kubernetes.org.cn/4078.html
+- `parameters`：依赖不同的提供者可能有不同的参数；
+- `reclaimPolicy`：回收策略同PV；
+- `volumeBindingMode`：pv和pvc绑定模式：Immediate，WaitForFirstConsumer
+- `allowVolumeExpansion`：就算这里设为true也不一定可以resize pv 大小；因为只对特定后端存储类型有效：https://www.dazhuanlan.com/2019/12/24/5e01dd6f36f6f/
+
+
+
+## NFS-StorageClass
+
+创建NFS的storageclass：https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client，
+
+```bash
+helm install nfs-sc -n nfs-sc stable/nfs-client-provisioner --set nfs.server=172.20.1.225 --set nfs.path=/data/k8s-nfs/
+```
+
+
+

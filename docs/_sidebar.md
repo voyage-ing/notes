@@ -20,6 +20,7 @@
 * Storage
   * [Volumes : 挂载到容器中](./notes/k8s/5Storage/Volumes.md)
   * [PVC&PV : 持久卷声明和持久卷](./notes/k8s/5Storage/PV&PVC.md)
+  * [StorageClass : 动态分配PV](./notes/k8s/5Storage/StorageClass.md)
 
 * Deploy Tools
   * [Helm : K8s资源部署利器](./notes/k8s/8Deploytools/helm.md)
