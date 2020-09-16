@@ -43,6 +43,7 @@ volume有太多类型，会详细介绍一些：
 - [emptyDir](#emptyDir)
 - gitRepo
 - [hostPath](#hostpath)
+- [nfs](#nfs)
 - ...
 
 #### <a id="emptyDir">EmptyDir</a>
@@ -86,7 +87,7 @@ metadata:
   name: hostpath-pod
 spec:
   nodeSelector: 
-    kubernetes.io/hostname: lab3master1
+    kubernetes.io/hostname: nodename
   containers:
   - image: hub-mirror.c.163.com/library/busybox
     name: busybox
@@ -101,5 +102,32 @@ spec:
   - name: test
     hostPath:
       path: /home/rancher/test
+```
+
+<a id="nfs">NFS</a>
+
+这个和NFS的StorageClass不同，这种会将nfs的整个资源池挂载在pod里，而不是在里面创建一个文件夹给pod使用的这种形式。
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testpod-nfs-2
+spec:
+  containers:
+  - image: hub-mirror.c.163.com/library/busybox
+    name: busybox
+    args:
+    - /bin/sh
+    - -c
+    - sleep 10; touch /tmp/healthy; sleep 30000
+    volumeMounts:
+    - name: datafolder
+      mountPath: /data
+  volumes:
+  - name: datafolder
+    nfs: 
+      server: 172.20.1.225
+      path: /data/k8s-nfs
 ```
 

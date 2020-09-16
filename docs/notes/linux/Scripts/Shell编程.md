@@ -30,6 +30,13 @@ run：`./test.sh arg1 arg2`
 
 script中与其对应的$1<-arg1, $2<-arg2
 
+#### 3：等待终端输入
+
+```bash
+echo "Please confirm whether the above information is correct：(y/n)"
+read checkflag
+```
+
 ### 判断：
 
 #### if-else格式
