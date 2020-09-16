@@ -38,7 +38,7 @@ touch: aaa: Read-only file system
 
 目标对象：`kubectl explain pod.spec.volumes`
 
-volume有太多类型，会详细介绍一些：
+volume有太多类型，会详细介绍一些，官网有每一种Volume的具体使用方式 https://v1-18.docs.kubernetes.io/zh/docs/concepts/storage/volumes/：
 
 - [emptyDir](#emptyDir)
 - gitRepo
