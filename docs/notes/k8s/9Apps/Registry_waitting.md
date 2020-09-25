@@ -121,7 +121,7 @@ spec:
 - 删除镜像：`DELETE /v2/<name>/manifests/<digest>` \<digest>从第三条获取
 
   - ```bash
-    curl -I --header "Accept:application/vnd.docker.distribution.manifest.v2+json" registry.k3s:5000/v2/vm/openwrt/manifests/19.07.3
+    7
     # 终端输出的 Docker-Content-Digest：对应值
     ```
 

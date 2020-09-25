@@ -21,6 +21,9 @@ spec:
       requests:
         cpu: 100m
         memory: 100Mi
+    volumeMounts:
+    - name: test
+      mountPath: /data/test
   tolerations:
     - key: node.kubernetes.io/not-ready
       operator: Exists
@@ -30,5 +33,9 @@ spec:
       operator: Exists
       effect: NoExecute
       tolerationSeconds: 2
+  volumes:
+  - name: test
+    persistentVolumeClaim: 
+      claimName: test-pvc
 ```
 

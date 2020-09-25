@@ -25,7 +25,7 @@ reclaimPolicy: Retain
 
 
 
-## NFS-StorageClass
+### NFS-StorageClass
 
 创建NFS的storageclass：https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client，
 
@@ -33,5 +33,20 @@ reclaimPolicy: Retain
 helm install nfs-sc -n nfs-sc stable/nfs-client-provisioner --set nfs.server=172.20.1.225 --set nfs.path=/data/k8s-nfs/
 ```
 
+## 使用StorageClass创建卷
 
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: app-pvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: storageclassName
+  resources:
+    requests:
+      storage: 10Gi
+```
 

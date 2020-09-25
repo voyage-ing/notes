@@ -37,3 +37,4 @@
 ---
 * **Linux**
   * [Git进阶使用](./notes/linux/GitNotes_V.md)
+  * [Fio使用](./notes/linux/Fio.md)
