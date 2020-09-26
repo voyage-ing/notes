@@ -7,9 +7,9 @@
 
 * Pod Schedule Controller
   * [ReplicaSet : 副本数量](./notes/k8s/2Controllers/1ReplicaSet_V.md)
-  * [Deployment]()
+  * [Deployment](./none)
   * [DaemonSet : 每个节点一个](./notes/k8s/2Controllers/3DaemonSet_V.md)
-  * [StatefulSet]()
+  * [StatefulSet](./none)
   * [Job : 完成工作](./notes/k8s/2Controllers/5Job_V.md)
   * [CronJob : 根据Cron工作](./notes/k8s/2Controllers/6CronJob_V.md)
 
