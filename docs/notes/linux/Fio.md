@@ -37,15 +37,13 @@ fio -filename=/dev/nvme0n1 -direct=1 -iodepth  32 -iodepth_batch 1 -iodepth_batc
   >
   > 一次模拟生成32个io请求，一次处理能接受16个请求，异步模式下，1个请求来了直接提交;
   >
-> 
-  >
-  > libaio引擎会用这个iodepth值来调用io_setup准备个可以一次提交iodepth个IO的上下文，同时申请个io请求队列用于保持IO。 在压测进行的时候，系统会生成特定的IO请求，往io请求队列里面扔，当队列里面的IO个数达到iodepth_batch值的时候，就调用io_submit批次提交请求，然后开始调用io_getevents开始收割已经完成的IO。 每次收割多少呢？由于收割的时候，超时时间设置为0，所以有多少已完成就算多少，最多可以收割iodepth_batch_complete值个。随着收割，IO队列里面的IO数就少了，那么需要补充新的IO。 什么时候补充呢？当IO数目降到iodepth_low值的时候，就重新填充，保证OS可以看到至少iodepth_low数目的io在电梯口排队着。
-  >
-  > ```yaml
+> ```yaml
   > -iodepth=16 -iodepth_batch=8 -iodepth_low=8 -iodepth_batch_complete=8
   > ```
   >
-  > 
+  > libaio引擎会用这个iodepth值来调用io_setup准备个可以一次提交iodepth个IO的上下文，同时申请个io请求队列用于保持IO。 在压测进行的时候，系统会生成特定的IO请求，往io请求队列里面扔，当队列里面的IO个数达到iodepth_batch值的时候，就调用io_submit批次提交请求，然后开始调用io_getevents开始收割已经完成的IO。 每次收割多少呢？由于收割的时候，超时时间设置为0，所以有多少已完成就算多少，最多可以收割iodepth_batch_complete值个。随着收割，IO队列里面的IO数就少了，那么需要补充新的IO。 什么时候补充呢？当IO数目降到iodepth_low值的时候，就重新填充，保证OS可以看到至少iodepth_low数目的io在电梯口排队着。
+  
+  
   
 - rw：模拟当前的读写模式，模式有randread,randwrite,randrw(可以指定rwmixread或者rwmixwrite来指定比例，默认50）,read,write,rw；
   
