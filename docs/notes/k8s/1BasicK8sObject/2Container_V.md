@@ -115,21 +115,66 @@ spec:
 
 > `initialDelaySeconds`给新启动的container一定的准备时间，让其就绪。不设置也会依据periodSeconds的值每几秒就探测一次，默认是10s；
 
-## 设置容器启动执行Command
+## 设置容器启动时默认Command和参数
 
-.spec.containers
+在K8s中定义容器时，镜像的ENTRYPOINT和CMD均可以被覆盖，仅需要在`.spec.containers`设置command和args（command和args在pod创建后无法被修改）：
 
-容器内执行命令
-
-```
+```yaml
     spec:
       restartPolicy: OnFailure
       containers:
       - name: main
-        image: luksa/batch-job
-        command: ["echo"]
-        args: ["正在执行"]
+        image: demo/image
+        command: ["/bin/command"]
+        args: ["arg1","arg2","arg3"]
 ```
 
+绝大多数情况下，只需要设置自定义参数。命令一般很少覆盖，除非针对一些未定义ENTRYPOIINT的通用镜像，如busybox；
 
+Dockerfile中的ENTRYPOINT和CMD与同等的Pod中规格字段，如下表：
+
+![image-20201010112257562](https://tva1.sinaimg.cn/large/007S8ZIlly1gjk2oh0qkcj318007wwj7.jpg)
+
+也可以单独的只设置args来覆盖或修改CMD；
+
+```yaml
+# 少量参数可以使用上面的，多参数检验使用如下；
+args:
+- foo
+- bar
+- "13"
+```
+
+> 这里字符串不需要用引号标记，数值需要用引号；
+
+## 设置容器的环境变量
+
+```yaml
+spec:
+  containers:
+  - image: luksa/fortune:env
+    env:
+    - name: ENV_NAME1
+      value: "30"
+    - name: ENV_NAME2
+      value: string(不需要引号)
+```
+
+> 不要忘了在容器中，k8s在会自动注入service对应的环境变量；
+>
+> 可通过命令：`kubectl exec pod xxx -- env ` 查看
+
+在环境变量值中引用其他环境变量：
+
+```yaml
+spec:
+  containers:
+  - image: luksa/fortune:env
+    env:
+    - name: ENV_NAME1
+      value: aaa
+    - name: ENV_NAME2
+      value: $(ENV_NAME1)bbb
+# 则 ENV_NAME2：aaabbb
+```
 

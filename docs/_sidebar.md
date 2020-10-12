@@ -31,6 +31,8 @@
   * [Nginx服务](./notes/k8s/9Apps/nginx_V.md)
   * [Busybox](./notes/k8s/9Apps/busybox.md)
 
+* 其他 
+  * [YAML语法](./notes/k8s/0Other/Yaml.md)
 ---
 * **Golang**
 

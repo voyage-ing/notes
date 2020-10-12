@@ -121,17 +121,16 @@ spec:
 - 删除镜像：`DELETE /v2/<name>/manifests/<digest>` \<digest>从第三条获取
 
   - ```bash
-    7
+    curl -I --header "Accept:application/vnd.docker.distribution.manifest.v2+json" registry.k3s:5000/v2/<name>/manifests/<tag>
     # 终端输出的 Docker-Content-Digest：对应值
     ```
 
-  - ```
-    curl -X DELETE registry.k3s:5000/v2/vm/openwrt/manifests/sha256:87c6c69372dc8d2bf545b5c119e4b6988d601f0a8e3b6260cac243ed8f63ea91
+  - ```bash
+    curl -X DELETE registry.k3s:5000/v2/<name>/manifests/sha256:87c6c69372dc8d2bf545b5c119e4b6988d601f0a8e3b6260cac243ed8f63ea91
     ```
 
-    
-
-
+  
+  > 这样删除有个问题，如果你是同一个镜像不同tag，删除任何一个tag，所有同源的镜像都会被删除；
 
 ### 为Registry的Ingress
 

@@ -21,7 +21,7 @@ bind_port = 7000
 
 客户端查看代理状态：`./frpc status -c ./frpc.ini`
 
-快捷启动脚本：
+快捷启动脚本，一键启动后台运行：
 
 - frps
 
@@ -91,7 +91,7 @@ remote_port = 6002
 
 > ssh连接的时候，公网ip + 这里的remote_port
 
-### 我的配置
+## 详细配置
 
 Server：
 
