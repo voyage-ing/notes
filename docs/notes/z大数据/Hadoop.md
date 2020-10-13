@@ -31,10 +31,3 @@ Spark，是分布式计算平台，是一个用scala语言编写的计算框架�
 
 Spark对标的是Hadoop中计算模块的MapReduce。
 
-## CDH
-
-**CDH：全称Cloudera’s Distribution Including Apache Hadoop。**
-
-> hadoop是一个开源项目，所以很多公司在这个基础进行商业化，Cloudera对hadoop做了相应的改变。Cloudera公司的发行版，我们将该版本称为CDH(Cloudera Distribution Hadoop)。
-
- 

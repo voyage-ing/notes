@@ -127,7 +127,7 @@ ADD test1.txt test1.txt
 - ADD 的优点：在执行 <源文件> 为 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，会自动复制并解压到 <目标路径>。
 - ADD 的缺点：在不解压的前提下，无法复制 tar 压缩文件。会令镜像构建缓存失效，从而可能会令镜像构建变得比较缓慢。具体是否使用，可以根据是否需要自动解压来决定。
 
-## <span id="shellexec">Shell和Exec格式的区别</span>
+### <span id="shellexec">Shell和Exec格式的区别</span>
 
 Dockerfile中支持Shell和Exec两种格式的命令：RUN、CMD、ENTRYPOINT；
 
