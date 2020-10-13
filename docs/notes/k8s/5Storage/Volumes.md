@@ -34,6 +34,60 @@ spec:
 touch: aaa: Read-only file system
 ```
 
+## Volume重要参数
+
+持续更新ing
+
+### subPath
+
+挂载到一个容器里已有的文件夹，如挂载volume到容器的/etc下，那么/etc下的所有原有文件都会被覆盖；
+
+我们只是想把某少量文件，放到容器内原有的文件夹里，不对原有文件更改，
+
+1. K8s提供了 `volumeMounts.subPath` 属性用于挂在单个文件而不是整个目录。
+
+```yaml
+spec:
+    containers:
+    - name: php
+      image: php:7.0-apache
+      volumeMounts:
+      - mountPath: /var/www/html/index.php
+        name: index
+        subPath: indexaaa.php    
+    volumes:
+    - name: index
+      configMap:
+        name: php-index
+        items:
+        - key: index.php
+          path: indexaaa.php      # configmap中的目录index.php对应的值给了相对路径 indexaaa.php，所以上面的subpath要用 相对路径indexaaa.php
+```
+
+2. 用subpath挂载文件夹到容器内已存在文件夹里
+
+```yaml
+spec:
+    containers:
+    - name: mysql
+      image: mysql
+      volumeMounts:
+      - mountPath: /var/lib/mysql
+        name: site-data
+        subPath: mysql               # /var/lib/mysql/mysql
+    - name: php
+      image: php
+      volumeMounts:
+      - mountPath: /var/www/html
+        name: site-data
+        subPath: html                # 
+    volumes:
+    - name: site-data
+      persistentVolumeClaim: xxx
+```
+
+
+
 ## Volume的类型
 
 目标对象：`kubectl explain pod.spec.volumes`
@@ -109,25 +163,13 @@ spec:
 这个和NFS的StorageClass不同，这种会将nfs的整个资源池挂载在pod里，而不是在里面创建一个文件夹给pod使用的这种形式。
 
 ```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: testpod-nfs-2
 spec:
-  containers:
-  - image: hub-mirror.c.163.com/library/busybox
-    name: busybox
-    args:
-    - /bin/sh
-    - -c
-    - sleep 10; touch /tmp/healthy; sleep 30000
-    volumeMounts:
-    - name: datafolder
-      mountPath: /data
-  volumes:
-  - name: datafolder
-    nfs: 
-      server: 172.20.1.225
-      path: /data/k8s-nfs
+    containers:
+    - name: php
+      image: php:7.0-apache
+      volumeMounts:
+      - mountPath: /var/www/html/index.php
+        name: index
+        subPath: index.php
 ```
 

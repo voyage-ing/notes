@@ -22,6 +22,9 @@
   * [PVC&PV : 持久卷声明和持久卷](./notes/k8s/5Storage/PV&PVC.md)
   * [StorageClass : 动态分配PV](./notes/k8s/5Storage/StorageClass.md)
 
+* Configuration
+  * [Configmap : 容器配置解耦合](./notes/k8s/6Configuration/Configmap.md)
+
 * Deploy Tools
   * [Helm : K8s资源部署利器](./notes/k8s/8Deploytools/helm.md)
   * [Kustomize](./notes/k8s/8Deploytools/kustomize.md)
