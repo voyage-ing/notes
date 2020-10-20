@@ -14,6 +14,9 @@
 * [Job : 完成工作](./notes/k8s/2Controllers/5Job_V.md)
 * [CronJob : 根据Cron工作](./notes/k8s/2Controllers/6CronJob_V.md)
 
+* Advanced Scheduler
+* [Taints & Tolerations](./notes/k8s/advancedScheduler/taints&tolerations.md)
+
 * Network
 * [Service : 服务发现](./notes/k8s/3Network/Service_V.md)
 * [Ingress : 域名访问](./notes/k8s/3Network/Ingress.md)

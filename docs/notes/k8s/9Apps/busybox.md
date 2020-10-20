@@ -14,6 +14,10 @@ spec:
       labels:
         app: busybox
     spec:
+      tolerations:
+      - key: "key"
+        operator: "Exists"
+        effect: "NoSchedule"
       volumes:
       - name: volume-test
         emptyDir: {}

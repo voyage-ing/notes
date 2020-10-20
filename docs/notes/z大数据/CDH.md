@@ -24,3 +24,21 @@ https://blog.csdn.net/swj9099/article/details/102836161
 172.24.1.106 cdh2
 ```
 
+CDH离线安装包：https://archive.cloudera.com/cm6/6.3.0/redhat7/yum/RPMS/x86_64
+
+CDH6.3.0相关包：
+
+cloudera-manager-daemons-6.3.0-2117683.el7.x86_64.rpm
+
+parcels对应版本：6.3.2-1.cdh6.3.2.p0.1605554 https://archive.cloudera.com/cdh6/6.3.2/parcels/
+
+
+
+![image-20201014093633570](https://tva1.sinaimg.cn/large/007S8ZIlly1gjom3bu1hcj31ih0u07an.jpg)
+
+收费规则详情：https://xiyoulaoyuanjia.cn/?p=135
+
+![image-20201015092126288](https://tva1.sinaimg.cn/large/007S8ZIlly1gjpr9kjpeej31d70u0n3n.jpg)
+
+![image-20201015092204422](https://tva1.sinaimg.cn/large/007S8ZIlly1gjpra9i0ywj31590u04a5.jpg)
+
